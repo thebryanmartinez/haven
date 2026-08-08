@@ -27,7 +27,7 @@ export const Funds = ({
           <AddFundDialog addFund={addFund} />
         </div>
       </div>
-      <div className="pb-4 max-h-[calc(100vh-400px)] w-full overflow-y-auto overflow-x-hidden">
+      <div className="pb-4 max-h-[calc(100vh-400px)] w-full overflow-y-auto overflow-x-hidden scrollbar-none">
         {!funds || funds.length === 0 ? (
           <EmptyState
             icon={Wallet}

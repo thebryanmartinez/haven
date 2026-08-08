@@ -16,6 +16,8 @@
   --chart-3: #facc00;
   --chart-4: #05e17a;
   --chart-5: #7a83ff;
+  --chart-6: #ff9b6a;
+  --chart-7: #e066ff;
   --chart-active-dot: #000;
 }
 
@@ -78,5 +80,14 @@
   h5,
   h6 {
     @apply font-heading;
+  }
+}
+
+@utility scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
   }
 }
