@@ -155,6 +155,12 @@ cookie, or middleware guarding routes; page-level components check
 
 `.env.local` files are not committed. Every application has a committed `.env.example`.
 
+## Verification
+
+Do not use the Claude in Chrome browser tools (screenshots, navigation, clicking
+through the app) to verify a UI change unless explicitly asked to. The user checks
+UI and feature changes manually in the browser themselves.
+
 ## Repo etiquette
 
 Branch flow: feature branches (`feature/<name>`) merge into `develop`, which merges
