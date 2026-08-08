@@ -1,58 +1,12 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-
 ## Project
 
-This is a pnpm + Turborepo monorepo. It holds several personal web applications that
-share one look, one component library, one set of conventions and one Convex backend.
-
-`apps/bytefin` is the first application: a personal finance web app that subdivides one
-bank account into multiple "funds" (Savings, Groceries, Rent) and tracks the
-transactions in each fund. Every application is built with Next.js 16 (App Router),
-React 19, TailwindCSS v4 and Shadcn UI, and is used mainly on mobile.
-
-## Commands
-
-Run these from the repository root.
-
-- `pnpm dev` — start the dev server of every application
-- `pnpm dev --filter bytefin` — start one application only
-- `pnpm build` — production build of every application
-- `pnpm lint` — Biome check across the whole workspace
-- `pnpm format` — Biome format (writes changes)
-- `pnpm typecheck` — TypeScript check of every workspace
-- `pnpm backend` — `convex dev` for the shared backend (watch and push)
-- `pnpm gen app` — create a new application (see "Add a new application")
-
-There is no test suite configured in this repo.
-
-## Layout
-
-```
-apps/
-  bytefin/                 # the finance application — has its own CLAUDE.md
-packages/
-  ui/                      # @bytefin/ui — Shadcn primitives, theme, cn()
-  backend/                 # @bytefin/backend — the shared Convex deployment
-  localization/            # @bytefin/localization — the typed t() factory
-  config/                  # @bytefin/config — tsconfig, Biome, PostCSS
-turbo/generators/          # the 'pnpm gen app' generator
-```
-
-### Packages
-
-| Package | Import | Holds |
-| --- | --- | --- |
-| `@bytefin/ui` | `@bytefin/ui/components`, `@bytefin/ui/components/theme`, `@bytefin/ui/lib/utils`, `@bytefin/ui/globals.css` | Shadcn primitives, `ThemeProvider`, `ThemeToggle`, the theme tokens, `cn()` |
-| `@bytefin/backend` | `@bytefin/backend/api`, `@bytefin/backend/dataModel`, `@bytefin/backend/lib/balance` | The Convex queries, mutations and schema |
-| `@bytefin/localization` | `@bytefin/localization` | `createUseLocalization()` and the `NestedKey` type |
-| `@bytefin/config` | `@bytefin/config/tsconfig/nextjs`, `@bytefin/config/biome`, `@bytefin/config/postcss` | Shared configuration |
+This is a pnpm + Turborepo monorepo. It holds several personal web applications that share one look, one component library, one set of conventions and one Convex backend. Every application is built with Next.js 16 (App Router), React 19, TailwindCSS v4 and Shadcn UI, and is used mainly on mobile.
 
 ## Application structure
 
-Code under `apps/<app>/src/modules/` is organized by feature, not by file type. Each
-module follows the same internal shape:
+Code under `apps/<app>/src/modules/` is organized by feature, not by file type. Each module follows the same internal shape:
 
 ```
 modules/<feature>/
@@ -62,60 +16,19 @@ modules/<feature>/
   interfaces/   # TypeScript types for the feature
 ```
 
-Forms use `react-hook-form` with `zod` schemas via `@hookform/resolvers`.
-
-`modules/shared/` holds the cross-cutting pieces that belong to that one application:
-generic `components/`, `hooks/` and `localization/`. Anything that two applications
-need belongs in a package instead.
-
-Always import from a module's `index.ts` barrel (e.g. `@/modules/funds/hooks`) rather
-than reaching into individual files. When you add a component, hook or schema, add its
-export to the relevant `index.ts`. The same rule applies to `@bytefin/ui/components`.
-
-Path alias in every application (`tsconfig.json`): `@/*` → `src/*`.
-
 ## Styling
 
-- The theme tokens (`--main`, `--background`, `--shadow`, the chart colours) live in
-  one file: `packages/ui/src/styles/globals.css`. Change the look there and every
-  application follows.
+- The theme tokens (`--main`, `--background`, `--shadow`, the chart colours) live in one file: `packages/ui/src/styles/globals.css`. Change the look there and every application follows.
 - Each application's `src/app/globals.css` imports Tailwind, `tw-animate-css` and
   `@bytefin/ui/globals.css`, and then declares two `@source` lines. **Keep the
-  `@source` line that points at `packages/ui/src`** — without it Tailwind v4 removes
-  the classes that the shared components use.
-- To add a Shadcn primitive, run the CLI from the UI package so the file lands in the
-  shared place:
-  ```bash
-  cd packages/ui && pnpm dlx shadcn@latest add <component>
-  ```
-  Then add the export to `packages/ui/src/components/index.ts`.
-- Inside `packages/ui`, import other primitives by their deep path
-  (`@bytefin/ui/components/button`), not through the barrel. The barrel would make a
-  circular import.
+  `@source` line that points at `packages/ui/src`** — without it Tailwind v4 removes the classes that the shared components use.
 
 ## Data layer (Convex)
 
 `packages/backend/convex/*.ts` defines the queries and mutations.
 `packages/backend/convex/_generated/` is generated by the Convex CLI.
 
-**Every application shares one Convex deployment.** Give the tables of a new
-application a prefix, for example `habit_tracker_entries`, so two applications do not
-use the same table name. Declare every table in `packages/backend/convex/schema.ts`.
-
-Data flow: a feature hook (e.g. `useFunds`, `useAccounts` in
-`apps/bytefin/src/modules/funds/hooks/`) wraps `useQuery`/`useMutation` from
-`convex/react` and exposes handler functions to components — components never call
-Convex directly.
-
-ByteFin has one shared `accounts` document that funds allocate balance from. Changing a
-fund's balance and the account's balance are separate calls (`updateFundBalance`,
-`updateAccountBalance`) and the caller must keep them in sync — see `getNewBalance` in
-`packages/backend/convex/lib/balance.ts`, which the Convex functions and the
-application forms both use.
-
-**Careful:** the old stand-alone repository at `../bytefin` still points at the same
-Convex deployment (`dev:wry-hamster-220`). Do not run `convex dev` in both places at
-the same time.
+**Every application shares one Convex deployment.** Give the tables of a new application a prefix, for example `habit_tracker_entries`, so two applications do not use the same table name. Declare every table in `packages/backend/convex/schema.ts`.
 
 ## Add a new application
 
@@ -126,45 +39,16 @@ cp apps/<name>/.env.example apps/<name>/.env.local   # add the Convex URL
 pnpm dev --filter <name>
 ```
 
-The generator produces a full Next.js application with the shared UI, the shared
-backend, the shared localization helper and the shared configs already connected.
-Its templates live in `turbo/generators/templates/app/`.
+The generator produces a full Next.js application with the shared UI, the shared backend, the shared localization helper and the shared configs already connected. Its templates live in `turbo/generators/templates/app/`.
 
 ## Localization
 
-Each application keeps `src/modules/shared/localization/en.json` as the source of truth
-for its UI strings, and a two-line `useLocalization.ts` that calls
-`createUseLocalization(en)` from `@bytefin/localization`. `t()` takes dot-delimited
-keys typed from the JSON structure — adding a key to the JSON automatically updates the
-allowed key type, no manual type edits needed.
-
-## Auth
-
-Auth in ByteFin is a PIN check, not a real session/user system. It stays inside
-`apps/bytefin` and is not shared. `POST /api/validate-pin` compares the submitted PIN
-against `NEXT_LOGIN_PIN` (server env var) and returns `{ valid }`. On success, `useAuth`
-stores an `isAuthenticated` flag in `sessionStorage` — there is no server-side session,
-cookie, or middleware guarding routes; page-level components check
-`useAuth().isAuthenticated` and redirect to `/login` themselves.
-
-## Env vars
-
-- `packages/backend/.env.local`: `CONVEX_DEPLOYMENT`, `CONVEX_URL`, `CONVEX_SITE_URL`
-- `apps/bytefin/.env.local`: `NEXT_PUBLIC_CONVEX_URL`, `NEXT_LOGIN_PIN`
-- Each new application: `NEXT_PUBLIC_CONVEX_URL`
-
-`.env.local` files are not committed. Every application has a committed `.env.example`.
+Each application keeps `src/modules/shared/localization/en.json` as the source of truth for its UI strings, and a two-line `useLocalization.ts` that calls `createUseLocalization(en)` from `@bytefin/localization`. `t()` takes dot-delimited keys typed from the JSON structure — adding a key to the JSON automatically updates the allowed key type, no manual type edits needed.
 
 ## Verification
 
-Do not use the Claude in Chrome browser tools (screenshots, navigation, clicking
-through the app) to verify a UI change unless explicitly asked to. The user checks
-UI and feature changes manually in the browser themselves.
+Do not use the Claude in Chrome browser tools (screenshots, navigation, clicking through the app) to verify a UI change unless explicitly asked to. The user checks UI and feature changes manually in the browser themselves.
 
 ## Repo etiquette
 
-Branch flow: feature branches (`feature/<name>`) merge into `develop`, which merges
-into `main` via PR.
-
-`AGENTS.md` also exists at the repo root with a short project description — keep it in
-sync with this file's Project section.
+`AGENTS.md` also exists at the repo root with a short project description — keep it in sync with this file's Project section.
