@@ -12,7 +12,8 @@
     "no": "No"
   },
   "header": {
-    "title": "ByteFin"
+    "title": "ByteFin",
+    "togglePrivacyMode": "Toggle privacy mode"
   },
   "funds": {
     "title": "Funds",

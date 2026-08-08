@@ -24,7 +24,12 @@ import type {
 } from "@/modules/funds/forms";
 import { useAddTransaction } from "@/modules/funds/hooks";
 import type { FundsProps } from "@/modules/funds/interfaces";
-import { useDialog, useLocalization } from "@/modules/shared/hooks";
+import {
+  useDialog,
+  useLocalization,
+  usePrivacyMode,
+} from "@/modules/shared/hooks";
+import { formatCurrency } from "@/modules/shared/lib/formatCurrency";
 
 interface AddTransactionDialogProps {
   fundId: Id<"funds">;
@@ -49,6 +54,7 @@ export const AddTransactionDialog = ({
     handleTransactionTypeChange,
   } = useAddTransaction(t, currentBalance);
   const { isOpen, handleClose, handleOpenChange } = useDialog();
+  const { isPrivacyModeOn } = usePrivacyMode();
 
   const resetTransaction = () => handleTransactionTypeChange("deposit");
 
@@ -130,7 +136,7 @@ export const AddTransactionDialog = ({
               )}
             />
             <div className="text-sm text-gray-500">
-              Current Balance: ${currentBalance.toFixed(2)}
+              Current Balance: {formatCurrency(currentBalance, isPrivacyModeOn)}
             </div>
           </div>
           <div className="flex justify-end space-x-2 pt-4">

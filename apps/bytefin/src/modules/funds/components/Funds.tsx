@@ -7,7 +7,8 @@ import {
 } from "@/modules/funds/components";
 import type { FundsProps } from "@/modules/funds/interfaces";
 import { EmptyState } from "@/modules/shared/components";
-import { useLocalization } from "@/modules/shared/hooks";
+import { useLocalization, usePrivacyMode } from "@/modules/shared/hooks";
+import { formatCurrency } from "@/modules/shared/lib/formatCurrency";
 
 export const Funds = ({
   funds,
@@ -18,6 +19,7 @@ export const Funds = ({
   updateAccountBalance,
 }: FundsProps) => {
   const { t } = useLocalization();
+  const { isPrivacyModeOn } = usePrivacyMode();
 
   return (
     <section className="space-y-4">
@@ -45,7 +47,7 @@ export const Funds = ({
                         {fund.name}
                       </span>
                       <span className="text-sm text-gray-400">
-                        ${fund.balance.toFixed(2)}
+                        {formatCurrency(fund.balance, isPrivacyModeOn)}
                       </span>
                     </div>
 

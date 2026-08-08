@@ -6,7 +6,9 @@ import {
   TooltipTrigger,
 } from "@bytefin/ui/components";
 import { ThemeToggle } from "@bytefin/ui/components/theme";
-import { useLocalization } from "@/modules/shared/hooks";
+import { PrivacyModeToggle } from "@/modules/shared/components/PrivacyModeToggle";
+import { useLocalization, usePrivacyMode } from "@/modules/shared/hooks";
+import { formatCurrency } from "@/modules/shared/lib/formatCurrency";
 
 interface HeaderProps {
   balance: number;
@@ -17,14 +19,12 @@ const MONTHS_IN_YEAR = 12;
 
 export const Header = ({ balance }: HeaderProps) => {
   const { t } = useLocalization();
+  const { isPrivacyModeOn } = usePrivacyMode();
   const monthlyInterestEstimate =
     (balance * ANNUAL_INTEREST_RATE) / MONTHS_IN_YEAR;
-  const formattedMonthlyInterest = monthlyInterestEstimate.toLocaleString(
-    "en-US",
-    {
-      style: "currency",
-      currency: "USD",
-    },
+  const formattedMonthlyInterest = formatCurrency(
+    monthlyInterestEstimate,
+    isPrivacyModeOn,
   );
 
   return (
@@ -45,7 +45,8 @@ export const Header = ({ balance }: HeaderProps) => {
           </TooltipContent>
         </Tooltip>
       </TooltipProvider>
-      <div className="justify-self-end">
+      <div className="flex flex-row gap-2 justify-self-end">
+        <PrivacyModeToggle />
         <ThemeToggle />
       </div>
     </section>

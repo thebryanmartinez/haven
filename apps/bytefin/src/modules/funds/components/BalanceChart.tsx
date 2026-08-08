@@ -12,7 +12,8 @@ import { PieChart as PieChartIcon } from "lucide-react";
 import { Label, Pie, PieChart } from "recharts";
 import type { Account, Fund } from "@/modules/funds/interfaces";
 import { EmptyState } from "@/modules/shared/components";
-import { useLocalization } from "@/modules/shared/hooks";
+import { useLocalization, usePrivacyMode } from "@/modules/shared/hooks";
+import { formatCurrency } from "@/modules/shared/lib/formatCurrency";
 
 interface BalanceChartProps {
   account: Account;
@@ -49,11 +50,9 @@ const BalanceChartTooltip = ({
   coordinate,
   payload,
 }: BalanceChartTooltipProps) => {
+  const { isPrivacyModeOn } = usePrivacyMode();
   const data = payload?.[0];
-  const formattedValue = (data?.value ?? 0).toLocaleString("en-US", {
-    style: "currency",
-    currency: "USD",
-  });
+  const formattedValue = formatCurrency(data?.value ?? 0, isPrivacyModeOn);
 
   return (
     <TooltipProvider>
@@ -79,6 +78,7 @@ const BalanceChartTooltip = ({
 
 export const BalanceChart = ({ account, funds }: BalanceChartProps) => {
   const { t } = useLocalization();
+  const { isPrivacyModeOn } = usePrivacyMode();
 
   const chartData = funds.map((fund, index) => ({
     name: fund.name,
@@ -133,10 +133,7 @@ export const BalanceChart = ({ account, funds }: BalanceChartProps) => {
                           y={viewBox.cy}
                           className="fill-foreground text-lg font-bold"
                         >
-                          {account.balance.toLocaleString("en-US", {
-                            style: "currency",
-                            currency: "USD",
-                          })}
+                          {formatCurrency(account.balance, isPrivacyModeOn)}
                         </tspan>
                       </text>
                     );
