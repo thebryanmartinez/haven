@@ -1,0 +1,27 @@
+"use client";
+
+import { Button, Card, CardContent } from "@bytefin/ui/components";
+import { ThemeToggle } from "@bytefin/ui/components/theme";
+import { useLocalization } from "@/modules/shared/hooks";
+
+export default function Home() {
+  const { t } = useLocalization();
+
+  return (
+    <main className="flex min-h-screen w-full justify-center bg-background sm:items-start">
+      <div className="flex flex-col w-full max-w-xl px-8 flex-1 gap-6 py-8">
+        <header className="flex items-center justify-between">
+          <h1 className="text-2xl">{t("home.title")}</h1>
+          <ThemeToggle />
+        </header>
+
+        <Card>
+          <CardContent className="flex flex-col gap-4">
+            <p>{t("home.description")}</p>
+            <Button>{t("home.action")}</Button>
+          </CardContent>
+        </Card>
+      </div>
+    </main>
+  );
+}

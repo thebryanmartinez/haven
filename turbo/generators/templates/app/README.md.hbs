@@ -1,0 +1,24 @@
+# {{ titleCase name }}
+
+{{ description }}
+
+Part of the ByteFin monorepo. It uses:
+
+- `@bytefin/ui` — the Shadcn primitives and the shared theme
+- `@bytefin/backend` — the shared Convex deployment
+- `@bytefin/localization` — the typed `t()` helper
+- `@bytefin/config` — the TypeScript, Biome and PostCSS configuration
+
+## Commands
+
+```bash
+pnpm dev --filter {{ dashCase name }}     # start the dev server on port {{ port }}
+pnpm build --filter {{ dashCase name }}   # production build
+```
+
+## Before the first start
+
+1. Copy `.env.example` to `.env.local`.
+2. Put the `CONVEX_URL` value of `packages/backend/.env.local` in it.
+3. Add your tables to `packages/backend/convex/schema.ts` with the prefix
+   `{{ snakeCase name }}_`.

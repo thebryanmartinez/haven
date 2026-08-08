@@ -1,0 +1,53 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "cancel": "Cancel",
+    "add": "Add",
+    "delete": "Delete",
+    "close": "Close",
+    "save": "Save",
+    "edit": "Edit",
+    "confirm": "Confirm",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "header": {
+    "title": "ByteFin"
+  },
+  "funds": {
+    "title": "Funds",
+    "noFundsYet": "No funds yet",
+    "noFundsDescription": "Create your first fund to start tracking your finances",
+    "addFund": "Add Fund",
+    "addTransaction": "Add Transaction",
+    "fundName": "Fund Name",
+    "amount": "Amount",
+    "addNewFund": "Add New Fund",
+    "addTransactionTitle": "Add Transaction",
+    "savingsPlaceholder": "Savings",
+    "amountPlaceholder": "100.00",
+    "amountMustBeNumber": "Amount must be a number.",
+    "amountMustNotBeZero": "Number must not be 0",
+    "insufficientFunds": "Amount exceeds current balance",
+    "deposit": "Deposit",
+    "withdraw": "Withdraw",
+    "descriptionRequired": "Transaction should contain a description.",
+    "descriptionMaxLength": "Description must be at most 100 characters.",
+    "fundRequired": "Fund should contain a name",
+    "fundMaxLength": "Fund name must be at most 30 characters"
+  },
+  "balanceChart": {
+    "noFundsYet": "No funds yet",
+    "noFundsDescription": "Add your first fund to see your balance distribution",
+    "noTransactionsYet": "No transactions yet",
+    "noTransactionsDescription": "Add your first transaction to see your balance distribution"
+  },
+  "serviceWorker": {
+    "registrationSuccess": "Service Worker registered",
+    "registrationFailed": "SW registration failed:"
+  },
+  "metadata": {
+    "title": "ByteFin",
+    "description": "A minimalist financial application"
+  }
+}
