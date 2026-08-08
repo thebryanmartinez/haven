@@ -54,9 +54,9 @@ export const PINLogin = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-end min-h-screen bg-background px-8 pb-12 sm:pb-24">
-      <div className="w-full max-w-md mt-auto mb-auto">
-        <div className="text-center space-y-4 mb-20">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-background px-8">
+      <div className="w-full max-w-md">
+        <div className="text-center space-y-4 mb-10">
           <h1 className="text-3xl font-heading text-foreground">Enter PIN</h1>
           <p className="text-muted-foreground">Please enter your 6-digit PIN</p>
         </div>
