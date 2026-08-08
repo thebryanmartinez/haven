@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist_Mono, Sora } from "next/font/google";
 import "./globals.css";
 import { RegisterServiceWorker } from "@/app/page";
 import { Providers } from "@/app/providers";
 import locales from "@/modules/shared/localization/en.json";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const sora = Sora({
+  variable: "--font-sora",
   subsets: ["latin"],
 });
 
@@ -26,7 +26,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${sora.variable} ${geistMono.variable}`}
+    >
       <head>
         <title>{locales.metadata.title}</title>
         <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -40,9 +44,7 @@ export default function RootLayout({
         <link rel="manifest" href="/manifest.json" />
       </head>
 
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className="font-sans antialiased">
         <Providers>
           {children}
           <RegisterServiceWorker />
