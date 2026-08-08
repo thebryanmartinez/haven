@@ -6,7 +6,7 @@ import {
   InputOTPSlot,
 } from "@bytefin/ui/components/input-otp";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useAuth } from "@/modules/authentication/hooks";
 
 const PIN_LENGTH = 6;
@@ -16,8 +16,15 @@ export const PINLogin = () => {
   const [pin, setPin] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
   const { login } = useAuth();
+
+  useEffect(() => {
+    if (!isLoading) {
+      inputRef.current?.focus();
+    }
+  }, [isLoading]);
 
   const handleChange = (value: string) => {
     setPin(value);
@@ -56,6 +63,7 @@ export const PINLogin = () => {
 
         <div className="flex justify-center">
           <InputOTP
+            ref={inputRef}
             maxLength={PIN_LENGTH}
             pattern={DIGITS_ONLY}
             inputMode="numeric"
