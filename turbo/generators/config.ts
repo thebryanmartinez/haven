@@ -1,7 +1,7 @@
 import type { PlopTypes } from "@turbo/gen";
 
 /**
- * Generators for the ByteFin monorepo.
+ * Generators for the Haven monorepo.
  *
  * Run `pnpm gen app` and give a name. The generator makes a full Next.js
  * application in `apps/<name>`. The application already uses the shared UI
@@ -33,7 +33,7 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
         type: "input",
         name: "description",
         message: "Short description:",
-        default: "A ByteFin monorepo application",
+        default: "A Haven monorepo application",
       },
       {
         type: "input",

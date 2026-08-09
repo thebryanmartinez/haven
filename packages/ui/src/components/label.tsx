@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@bytefin/ui/lib/utils";
+import { cn } from "@haven/ui/lib/utils";
 import * as LabelPrimitive from "@radix-ui/react-label";
 import type * as React from "react";
 

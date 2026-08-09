@@ -1,13 +1,13 @@
-# @bytefin/backend
+# @haven/backend
 
 The Convex backend that every application in the monorepo shares.
 
 ## Commands
 
 ```bash
-pnpm --filter @bytefin/backend dev    # watch and push the functions
-pnpm --filter @bytefin/backend push   # push one time and stop
-pnpm --filter @bytefin/backend deploy # deploy to production
+pnpm --filter @haven/backend dev    # watch and push the functions
+pnpm --filter @haven/backend push   # push one time and stop
+pnpm --filter @haven/backend deploy # deploy to production
 ```
 
 ## Rules
@@ -17,13 +17,12 @@ pnpm --filter @bytefin/backend deploy # deploy to production
   the same table name.
 - Declare every table in `convex/schema.ts`.
 - Do not run `convex dev` in two directories at the same time on the same
-  deployment. The old stand-alone `bytefin` repository points at the same
   deployment.
 
 ## Imports
 
 ```ts
-import { api } from "@bytefin/backend/api";
-import type { Id } from "@bytefin/backend/dataModel";
-import { getNewBalance } from "@bytefin/backend/lib/balance";
+import { api } from "@haven/backend/api";
+import type { Id } from "@haven/backend/dataModel";
+import { getNewBalance } from "@haven/backend/lib/balance";
 ```

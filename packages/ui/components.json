@@ -12,11 +12,11 @@
   },
   "iconLibrary": "lucide",
   "aliases": {
-    "components": "@bytefin/ui/components",
-    "ui": "@bytefin/ui/components",
-    "utils": "@bytefin/ui/lib/utils",
-    "hooks": "@bytefin/ui/hooks",
-    "lib": "@bytefin/ui/lib"
+    "components": "@haven/ui/components",
+    "ui": "@haven/ui/components",
+    "utils": "@haven/ui/lib/utils",
+    "hooks": "@haven/ui/hooks",
+    "lib": "@haven/ui/lib"
   },
   "registries": {}
 }

@@ -1,4 +1,4 @@
-# ByteFin Monorepo
+# Haven Monorepo
 
 A pnpm + Turborepo monorepo for my personal web applications. Every application uses
 the same component library, the same theme, the same conventions and the same Convex
@@ -8,16 +8,16 @@ backend.
 
 | Path | Name | What it does |
 | --- | --- | --- |
-| `apps/bytefin` | ByteFin | Subdivides one bank account into funds and tracks the transactions in each fund |
+| `apps/pockets` | Pockets | Subdivides one bank account into funds and tracks the transactions in each fund |
 
 ## Packages
 
 | Path | Name | What it holds |
 | --- | --- | --- |
-| `packages/ui` | `@bytefin/ui` | Shadcn UI primitives, the theme tokens, `ThemeProvider`, `ThemeToggle`, `cn()` |
-| `packages/backend` | `@bytefin/backend` | The Convex schema, queries and mutations that every application shares |
-| `packages/localization` | `@bytefin/localization` | The typed `t()` helper factory |
-| `packages/config` | `@bytefin/config` | The shared TypeScript, Biome and PostCSS configuration |
+| `packages/ui` | `@haven/ui` | Shadcn UI primitives, the theme tokens, `ThemeProvider`, `ThemeToggle`, `cn()` |
+| `packages/backend` | `@haven/backend` | The Convex schema, queries and mutations that every application shares |
+| `packages/localization` | `@haven/localization` | The typed `t()` helper factory |
+| `packages/config` | `@haven/config` | The shared TypeScript, Biome and PostCSS configuration |
 
 ## Stack
 
@@ -31,10 +31,10 @@ pnpm install
 
 # fill the environment files
 cp packages/backend/.env.example packages/backend/.env.local
-cp apps/bytefin/.env.example apps/bytefin/.env.local
+cp apps/pockets/.env.example apps/pockets/.env.local
 
 # push the Convex functions one time
-pnpm --filter @bytefin/backend push
+pnpm --filter @haven/backend push
 
 # start everything (applications + Convex watch)
 pnpm dev
@@ -45,7 +45,7 @@ pnpm dev
 | Command | What it does |
 | --- | --- |
 | `pnpm dev` | Start the dev server of every application |
-| `pnpm dev --filter bytefin` | Start one application |
+| `pnpm dev --filter pockets` | Start one application |
 | `pnpm build` | Production build of every application |
 | `pnpm lint` | Biome check across the workspace |
 | `pnpm format` | Biome format (writes changes) |
@@ -87,9 +87,6 @@ every application follows.
 Every application shares one Convex deployment. Give the tables of a new application a
 prefix (for example `habit_tracker_entries`) and declare them in
 `packages/backend/convex/schema.ts`.
-
-**Careful:** the old stand-alone repository at `../bytefin` still points at the same
-deployment. Do not run `convex dev` in both places at the same time.
 
 ## Branches
 

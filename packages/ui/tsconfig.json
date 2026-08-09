@@ -1,5 +1,5 @@
 {
-  "extends": "@bytefin/config/tsconfig/base",
+  "extends": "@haven/config/tsconfig/base",
   "compilerOptions": {
     "baseUrl": "."
   },

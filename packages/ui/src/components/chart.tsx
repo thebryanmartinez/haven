@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@bytefin/ui/lib/utils";
+import { cn } from "@haven/ui/lib/utils";
 import * as React from "react";
 import * as RechartsPrimitive from "recharts";
 

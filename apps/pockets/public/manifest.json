@@ -1,0 +1,36 @@
+{
+  "name": "Pockets",
+  "short_name": "Pockets",
+  "description": "A minimalist financial application",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#361717FF",
+  "theme_color": "#FF6669FF",
+  "categories": ["finance"],
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "app-screenshot.jpeg",
+      "type": "image/png",
+      "sizes": "720x1600",
+      "form_factor": "narrow"
+    }
+  ]
+}

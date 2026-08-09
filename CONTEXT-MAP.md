@@ -2,4 +2,4 @@
 
 ## Contexts
 
-- [ByteFin](./apps/bytefin/CONTEXT.md) — subdivides one bank account into funds and tracks transactions inside each fund
+- [Pockets](./apps/pockets/CONTEXT.md) — subdivides one bank account into funds and tracks transactions inside each fund

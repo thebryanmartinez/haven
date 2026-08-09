@@ -20,7 +20,7 @@ modules/<feature>/
 
 - The theme tokens (`--main`, `--background`, `--shadow`, the chart colours) live in one file: `packages/ui/src/styles/globals.css`. Change the look there and every application follows.
 - Each application's `src/app/globals.css` imports Tailwind, `tw-animate-css` and
-  `@bytefin/ui/globals.css`, and then declares two `@source` lines. **Keep the
+  `@haven/ui/globals.css`, and then declares two `@source` lines. **Keep the
   `@source` line that points at `packages/ui/src`** — without it Tailwind v4 removes the classes that the shared components use.
 
 ## Data layer (Convex)
@@ -41,14 +41,16 @@ pnpm dev --filter <name>
 
 The generator produces a full Next.js application with the shared UI, the shared backend, the shared localization helper and the shared configs already connected. Its templates live in `turbo/generators/templates/app/`.
 
-## Localization
+## Agent skills
 
-Each application keeps `src/modules/shared/localization/en.json` as the source of truth for its UI strings, and a two-line `useLocalization.ts` that calls `createUseLocalization(en)` from `@bytefin/localization`. `t()` takes dot-delimited keys typed from the JSON structure — adding a key to the JSON automatically updates the allowed key type, no manual type edits needed.
+### Issue tracker
 
-## Verification
+Issues live in GitHub Issues for `thebryanmartinez/haven`, managed via the `gh` CLI. See `docs/agents/issue-tracker.md`.
 
-Do not use the Claude in Chrome browser tools (screenshots, navigation, clicking through the app) to verify a UI change unless explicitly asked to. The user checks UI and feature changes manually in the browser themselves.
+### Triage labels
 
-## Repo etiquette
+Default label vocabulary (`needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`). See `docs/agents/triage-labels.md`.
 
-`AGENTS.md` also exists at the repo root with a short project description — keep it in sync with this file's Project section.
+### Domain docs
+
+Multi-context layout — a root `CONTEXT-MAP.md` pointing to a `CONTEXT.md` per app and per shared package. See `docs/agents/domain.md`.

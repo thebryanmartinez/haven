@@ -1,5 +1,5 @@
 {
-  "name": "bytefin-monorepo",
+  "name": "haven",
   "version": "0.1.0",
   "private": true,
   "packageManager": "pnpm@11.5.0",
@@ -12,13 +12,13 @@
     "lint": "biome check",
     "format": "biome format --write",
     "typecheck": "turbo run typecheck",
-    "backend": "pnpm --filter @bytefin/backend dev",
+    "backend": "pnpm --filter @haven/backend dev",
     "gen": "turbo gen",
     "gen:app": "turbo gen app"
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.0",
-    "@bytefin/config": "workspace:*",
+    "@haven/config": "workspace:*",
     "@turbo/gen": "^2.10.9",
     "@types/node": "^20",
     "turbo": "^2.10.9",

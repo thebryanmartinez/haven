@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@bytefin/ui/components/button";
+import { Button } from "@haven/ui/components/button";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 

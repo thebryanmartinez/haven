@@ -1,8 +1,8 @@
 "use client";
 
-import { Label } from "@bytefin/ui/components/label";
-import { Separator } from "@bytefin/ui/components/separator";
-import { cn } from "@bytefin/ui/lib/utils";
+import { Label } from "@haven/ui/components/label";
+import { Separator } from "@haven/ui/components/separator";
+import { cn } from "@haven/ui/lib/utils";
 import { cva, type VariantProps } from "class-variance-authority";
 import { useMemo } from "react";
 

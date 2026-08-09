@@ -6,17 +6,17 @@ import { v } from "convex/values";
  * Give the tables of a new application a prefix, for example `blog_posts`, so
  * the names of two applications do not collide.
  *
- * The tables below belong to ByteFin (apps/bytefin).
+ * The tables below belong to Pockets (apps/pockets).
  */
 export default defineSchema({
-  accounts: defineTable({
+  pockets_accounts: defineTable({
     name: v.string(),
     balance: v.number(),
   }),
 
-  funds: defineTable({
+  pockets_funds: defineTable({
     name: v.string(),
     balance: v.number(),
-    accountId: v.id("accounts"),
+    accountId: v.id("pockets_accounts"),
   }).index("by_account", ["accountId"]),
 });

@@ -1,5 +1,5 @@
 {
-  "name": "@bytefin/backend",
+  "name": "@haven/backend",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.0",
-    "@bytefin/config": "workspace:*",
+    "@haven/config": "workspace:*",
     "typescript": "^5"
   }
 }

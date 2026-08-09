@@ -11,7 +11,7 @@ importers:
       '@biomejs/biome':
         specifier: 2.2.0
         version: 2.2.0
-      '@bytefin/config':
+      '@haven/config':
         specifier: workspace:*
         version: link:packages/config
       '@turbo/gen':
@@ -27,15 +27,15 @@ importers:
         specifier: ^5
         version: 5.9.3
 
-  apps/bytefin:
+  apps/pockets:
     dependencies:
-      '@bytefin/backend':
+      '@haven/backend':
         specifier: workspace:*
         version: link:../../packages/backend
-      '@bytefin/localization':
+      '@haven/localization':
         specifier: workspace:*
         version: link:../../packages/localization
-      '@bytefin/ui':
+      '@haven/ui':
         specifier: workspace:*
         version: link:../../packages/ui
       '@hookform/resolvers':
@@ -69,7 +69,7 @@ importers:
       '@biomejs/biome':
         specifier: 2.2.0
         version: 2.2.0
-      '@bytefin/config':
+      '@haven/config':
         specifier: workspace:*
         version: link:../../packages/config
       '@tailwindcss/postcss':
@@ -109,7 +109,7 @@ importers:
       '@biomejs/biome':
         specifier: 2.2.0
         version: 2.2.0
-      '@bytefin/config':
+      '@haven/config':
         specifier: workspace:*
         version: link:../config
       typescript:
@@ -133,7 +133,7 @@ importers:
       '@biomejs/biome':
         specifier: 2.2.0
         version: 2.2.0
-      '@bytefin/config':
+      '@haven/config':
         specifier: workspace:*
         version: link:../config
       typescript:
@@ -197,7 +197,7 @@ importers:
       '@biomejs/biome':
         specifier: 2.2.0
         version: 2.2.0
-      '@bytefin/config':
+      '@haven/config':
         specifier: workspace:*
         version: link:../config
       '@types/react':
