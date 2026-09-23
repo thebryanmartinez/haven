@@ -91,3 +91,13 @@ _Avoid_: total debt, debt balance
 **Net worth**:
 Total assets minus total liabilities at one moment. It is always derived and never stored.
 _Avoid_: balance, total, equity, wealth
+
+### Display
+
+**Privacy Mode**:
+A persisted user preference. When on, it replaces every displayed money amount and every share count with a masked amount, because shares times a public price show the worth. It does not hide the shape of the chart lines.
+_Avoid_: mask mode, hide balances, blur mode, incognito mode
+
+**Masked amount**:
+The fixed placeholder shown instead of a real money amount (`$****`) or share count when Privacy Mode is on. Its length does not change with the real number, so it does not show its size.
+_Avoid_: hidden amount, obscured value
