@@ -11,6 +11,8 @@
 import type * as accounts from "../accounts.js";
 import type * as funds from "../funds.js";
 import type * as lib_balance from "../lib/balance.js";
+import type * as lib_tally from "../lib/tally.js";
+import type * as tally_netWorth from "../tally/netWorth.js";
 
 import type {
   ApiFromModules,
@@ -22,6 +24,8 @@ declare const fullApi: ApiFromModules<{
   accounts: typeof accounts;
   funds: typeof funds;
   "lib/balance": typeof lib_balance;
+  "lib/tally": typeof lib_tally;
+  "tally/netWorth": typeof tally_netWorth;
 }>;
 
 /**
