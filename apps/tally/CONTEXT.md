@@ -13,7 +13,7 @@ A thing the user owns that has a worth, such as money in a bank, shares of a sto
 _Avoid_: item, entry, subject, account, holding, position
 
 **Liability**:
-A debt the user owes, such as a mortgage, a credit card or a loan. A liability has no type, and its worth is always a positive number.
+A debt the user owes, such as a mortgage, a credit card or a loan. A liability has no type, and its worth is never a negative number.
 _Avoid_: item, entry, subject, debt account, loan (as the general term)
 
 ### Asset types
